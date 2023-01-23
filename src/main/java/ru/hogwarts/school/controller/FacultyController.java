@@ -7,6 +7,7 @@ import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.FacultyService;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -52,8 +53,30 @@ public class FacultyController {
     }
 
     @GetMapping("color/{color}")
-    public List<Faculty> getFacultiesByColor(@PathVariable String color) {
-        return facultyService.getFacultiesByColor(color);
+    public ResponseEntity<List<Faculty>> getFacultiesByColor(@PathVariable String color) {
+        List<Faculty> foundFaculties = facultyService.getFacultiesByColor(color);
+        if (foundFaculties.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(foundFaculties);
     }
+
+    @GetMapping
+    public ResponseEntity<Faculty> findFacultyByNameOrColor(@RequestParam(required = false) String name,
+                                                            @RequestParam(required = false) String color) {
+        Faculty foundFaculty = facultyService.findFacultyByNameOrColor(name, color);
+        if (foundFaculty == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(foundFaculty);
+    }
+
+//    @GetMapping("students")
+//    public ResponseEntity<Collection<Student>> getStudentsFromFaculty(@RequestParam Long id) {
+//        if (facultyService.findFaculty(id) == null) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok(facultyService.getStudentsFromFaculty(id));
+//    }
 
 }
