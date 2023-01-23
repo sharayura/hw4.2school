@@ -46,10 +46,10 @@ public class StudentService {
                 .toList();
     }
 
-    public Faculty getFacultyOfStudent(Long id) {
+    public Long getFacultyIdOfStudent(Long id) {
         if (findStudent(id) == null) {
             return null;
         }
-        return findStudent(id).getFaculty();
+        return findStudent(id).getFacultyId();
     }
 }

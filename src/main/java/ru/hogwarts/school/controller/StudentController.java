@@ -68,8 +68,8 @@ public class StudentController {
     }
 
     @GetMapping("faculty")
-    public ResponseEntity<Faculty> getFacultyOfStudent(@RequestParam Long id) {
-        Faculty foundFaculty = studentService.getFacultyOfStudent(id);
+    public ResponseEntity<Long> getFacultyOfStudent(@RequestParam Long id) {
+        Long foundFaculty = studentService.getFacultyIdOfStudent(id);
         if (foundFaculty == null) {
             return ResponseEntity.notFound().build();
         }

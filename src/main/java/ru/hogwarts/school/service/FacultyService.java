@@ -49,7 +49,7 @@ public class FacultyService {
         return facultyRepository.findFacultyByNameIgnoreCaseOrColorIgnoreCase(name, color);
     }
 
-//    public Collection<Student> getStudentsFromFaculty(Long id) {
-//        return findFaculty(id).getStudents();
-//    }
+    public Collection<Student> getStudentsFromFaculty(Long id) {
+        return findFaculty(id).getStudents();
+    }
 }

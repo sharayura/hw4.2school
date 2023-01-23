@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,9 +17,9 @@ public class Faculty {
     @OneToMany(mappedBy = "faculty")
     private Collection<Student> students;
 
-//    public Collection<Student> getStudents() {
-//        return students;
-//    }
+    public Collection<Student> getStudents() {
+        return students;
+    }
 
     public void setId(Long id) {
         this.id = id;

@@ -71,12 +71,12 @@ public class FacultyController {
         return ResponseEntity.ok(foundFaculty);
     }
 
-//    @GetMapping("students")
-//    public ResponseEntity<Collection<Student>> getStudentsFromFaculty(@RequestParam Long id) {
-//        if (facultyService.findFaculty(id) == null) {
-//            return ResponseEntity.notFound().build();
-//        }
-//        return ResponseEntity.ok(facultyService.getStudentsFromFaculty(id));
-//    }
+    @GetMapping("students")
+    public ResponseEntity<Collection<Student>> getStudentsFromFaculty(@RequestParam Long id) {
+        if (facultyService.findFaculty(id) == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(facultyService.getStudentsFromFaculty(id));
+    }
 
 }
