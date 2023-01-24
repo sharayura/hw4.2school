@@ -40,10 +40,8 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
-    public List<Student> getStudentsByAge(int age) {
-        return studentRepository.findAll().stream()
-                .filter(student -> student.getAge() == age)
-                .toList();
+    public Collection<Student> getStudentsByAge(int age) {
+        return studentRepository.findStudentByAge(age);
     }
 
     public Long getFacultyIdOfStudent(Long id) {
