@@ -19,6 +19,10 @@ public class Student {
         return faculty.getId();
     }
 
+//    public void setFacultyId(Long id) {
+//        this.faculty.setId(id);
+//    }
+
     public void setId(Long id) {
         this.id = id;
     }

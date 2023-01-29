@@ -13,7 +13,7 @@ import java.util.List;
 public class FacultyService {
     private final FacultyRepository facultyRepository;
 
-    public FacultyService(FacultyRepository facultyRepository, StudentRepository studentRepository) {
+    public FacultyService(FacultyRepository facultyRepository) {
         this.facultyRepository = facultyRepository;
     }
 
