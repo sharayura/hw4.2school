@@ -7,15 +7,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import ru.hogwarts.school.controller.StudentController;
+import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ApplicationTests {
+class StudentControllerTests {
 
     @LocalServerPort
     private int port;
 
-    @Autowired
+   @Autowired
     private StudentController studentController;
 
     @Autowired
@@ -27,17 +28,16 @@ class ApplicationTests {
     }
 
     @Test
-    public void testGetStudent() throws Exception {
-        Assertions.assertThat(this.testRestTemplate.getForObject("http://localhost:" + port + "/student/1", String.class))
-                .isNotEmpty();
+    public void testPostStudent() throws Exception {
+        Faculty faculty = new Faculty();
+        Student student = new Student("New", 14, faculty);
+        Assertions.assertThat(this.testRestTemplate.postForEntity("http://localhost:" + port + "/student", student, String.class)
+                .getBody()).isNotEmpty();
     }
 
     @Test
-    public void testPostStudent() throws Exception {
-        Student student = new Student();
-        student.setAge(14);
-        student.setName("New");
-        Assertions.assertThat(this.testRestTemplate.postForObject("http://localhost:" + port + "/student", student, String.class))
+    public void testGetStudent() throws Exception {
+        Assertions.assertThat(this.testRestTemplate.getForObject("http://localhost:" + port + "/student/1", String.class))
                 .isNotEmpty();
     }
 

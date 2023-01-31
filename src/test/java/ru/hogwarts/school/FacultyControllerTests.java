@@ -28,7 +28,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest
+@WebMvcTest(FacultyController.class)
 public class FacultyControllerTests {
 
     @Autowired
@@ -42,21 +42,6 @@ public class FacultyControllerTests {
 
     @InjectMocks
     private FacultyController facultyController;
-
-    @MockBean
-    private StudentRepository studentRepository;
-
-    @SpyBean
-    private StudentService studentService;
-
-    @InjectMocks
-    private StudentController studentController;
-
-    @MockBean
-    private AvatarRepository avatarRepository;
-
-    @SpyBean
-    private AvatarService avatarService;
 
     @Test
     public void saveFacultyTest() throws Exception {
