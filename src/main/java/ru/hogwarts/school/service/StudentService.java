@@ -50,4 +50,17 @@ public class StudentService {
         }
         return findStudent(id).getFacultyId();
     }
+
+    public int getNumberOfAllStudents() {
+        return studentRepository.getNumberOfAllStudents();
+    }
+
+    public int getAverageAge() {
+        return studentRepository.getAverageAge();
+    }
+
+    public Collection<Student> get5MaxId() {
+        return studentRepository.get5MaxId();
+    }
+
 }

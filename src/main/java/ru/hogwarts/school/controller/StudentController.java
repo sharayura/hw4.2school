@@ -125,4 +125,19 @@ public class StudentController {
             is.transferTo(os);
         }
     }
+
+    @GetMapping("number")
+    public ResponseEntity<Integer> getNumberOfAllStudents() {
+        return ResponseEntity.ok(studentService.getNumberOfAllStudents());
+    }
+
+    @GetMapping("avg-age")
+    public ResponseEntity<Integer> getAverageAge() {
+        return ResponseEntity.ok(studentService.getAverageAge());
+    }
+
+    @GetMapping("5last")
+    public ResponseEntity<Collection<Student>> get5MaxId() {
+        return ResponseEntity.ok(studentService.get5MaxId());
+    }
 }
