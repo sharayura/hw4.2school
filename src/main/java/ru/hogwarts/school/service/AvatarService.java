@@ -61,13 +61,8 @@ public class AvatarService {
         return avatarRepository.findByStudentId(studentId).orElse(new Avatar());
     }
 
-    public List<byte[]> getAllAvatarDataPage(Integer pageNumber, Integer pageSize) {
+    public List<Avatar> getAllAvatarsPage(Integer pageNumber, Integer pageSize) {
         PageRequest pageRequest = PageRequest.of(pageNumber- 1, pageSize);
-        List<Avatar> avatars = avatarRepository.findAll(pageRequest).getContent();
-        List<byte[]> avatarsData = new ArrayList<>();
-        for (Avatar avatar : avatars) {
-            avatarsData.add(avatar.getData());
-        }
-        return avatarsData;
+        return avatarRepository.findAll(pageRequest).getContent();
     }
 }
