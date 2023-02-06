@@ -9,7 +9,7 @@ import java.util.Objects;
 @Entity
 public class Student {
     @Id
-    @GeneratedValue
+    @GeneratedValue //(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private int age;
@@ -31,15 +31,20 @@ public class Student {
     public Student(String name, int age) {
         this.name = name;
         this.age = age;
+        this.faculty = new Faculty();
+    }
+
+    public Faculty getFaculty() {
+        return faculty;
     }
 
     public Long getFacultyId() {
         return faculty.getId();
     }
 
-//    public void setFaculty(Faculty faculty) {
-//        this.faculty = faculty;
-//    }
+    public void setFacultyId(Long facultyId) {
+        this.faculty.setId(facultyId);
+    }
 
     public void setId(Long id) {
         this.id = id;
