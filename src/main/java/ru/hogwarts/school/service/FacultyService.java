@@ -62,4 +62,15 @@ public class FacultyService {
         logger.debug("Method getStudentsFromFaculty was called");
         return findFaculty(id).getStudents();
     }
+
+    public List<String> longestNames() {
+        int maxLength = facultyRepository.findAll().stream()
+                .mapToInt(s -> s.getName().length())
+                .max().orElseThrow();
+
+        return facultyRepository.findAll().stream()
+                .map(Faculty::getName)
+                .filter(s -> s.length() == maxLength)
+                .toList();
+    }
 }

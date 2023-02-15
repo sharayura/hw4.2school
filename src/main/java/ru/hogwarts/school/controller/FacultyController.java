@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
+import ru.hogwarts.school.repositories.FacultyRepository;
 import ru.hogwarts.school.service.FacultyService;
 
 import java.util.Collection;
@@ -14,9 +15,12 @@ import java.util.List;
 @RequestMapping("faculty")
 public class FacultyController {
     private final FacultyService facultyService;
+    private final FacultyRepository facultyRepository;
 
-    public FacultyController(FacultyService facultyService) {
+    public FacultyController(FacultyService facultyService,
+                             FacultyRepository facultyRepository) {
         this.facultyService = facultyService;
+        this.facultyRepository = facultyRepository;
     }
 
     @GetMapping("{id}")
@@ -77,6 +81,11 @@ public class FacultyController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(facultyService.getStudentsFromFaculty(id));
+    }
+
+    @GetMapping("names/longest")
+    public ResponseEntity<List<String>> longestNames() {
+        return ResponseEntity.ok(facultyService.longestNames());
     }
 
 }

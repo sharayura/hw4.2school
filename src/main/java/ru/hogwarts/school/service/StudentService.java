@@ -77,4 +77,17 @@ public class StudentService {
         return studentRepository.get5MaxId();
     }
 
+    public List<String> findNamesBeginA() {
+        return studentRepository.findAll().stream()
+                .map(s -> s.getName().toUpperCase())
+                .filter(s -> s.charAt(0) == 'A')
+                .sorted().toList();
+    }
+
+    public Double averageAge() {
+        return studentRepository.findAll().stream()
+                .mapToDouble(Student::getAge)
+                .average().orElseThrow();
+    }
+
 }
