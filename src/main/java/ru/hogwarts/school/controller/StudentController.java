@@ -99,4 +99,14 @@ public class StudentController {
     public ResponseEntity<Double> averageAge() {
         return ResponseEntity.ok(studentService.averageAge());
     }
+
+    @GetMapping("names-console")
+    public void studentNamesConsole() {
+        studentService.studentNamesConsole();
+    }
+
+    @GetMapping("names-console-synchro")
+    public void studentNamesConsoleSynchro() {
+        studentService.studentNamesConsoleSynchro();
+    }
 }
